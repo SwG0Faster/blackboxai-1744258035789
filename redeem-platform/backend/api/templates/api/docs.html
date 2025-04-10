@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMarket API Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-gray-900">CodeMarket API Documentation</h1>
+            <p class="mt-4 text-lg text-gray-500">API Status: Running</p>
+        </div>
+
+        <div class="mt-12">
+            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                <div class="px-4 py-5 sm:px-6">
+                    <h2 class="text-lg font-medium text-gray-900">Available Endpoints</h2>
+                </div>
+                <div class="border-t border-gray-200">
+                    <div class="bg-gray-50 px-4 py-5 sm:p-6">
+                        <div class="space-y-6">
+                            <!-- Authentication -->
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900">Authentication</h3>
+                                <div class="mt-4 space-y-4">
+                                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                                        <div class="flex items-center">
+                                            <span class="px-2 py-1 text-xs font-semibold bg-green-100 text-green-800 rounded">POST</span>
+                                            <code class="ml-3 text-sm text-gray-700">/api/auth/login/</code>
+                                        </div>
+                                        <p class="mt-2 text-sm text-gray-600">Login with username and password</p>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                                        <div class="flex items-center">
+                                            <span class="px-2 py-1 text-xs font-semibold bg-green-100 text-green-800 rounded">POST</span>
+                                            <code class="ml-3 text-sm text-gray-700">/api/auth/register/</code>
+                                        </div>
+                                        <p class="mt-2 text-sm text-gray-600">Register a new user account</p>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                                        <div class="flex items-center">
+                                            <span class="px-2 py-1 text-xs font-semibold bg-green-100 text-green-800 rounded">POST</span>
+                                            <code class="ml-3 text-sm text-gray-700">/api/auth/logout/</code>
+                                        </div>
+                                        <p class="mt-2 text-sm text-gray-600">Logout current user</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Profile -->
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900">Profile</h3>
+                                <div class="mt-4 space-y-4">
+                                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                                        <div class="flex items-center">
+                                            <span class="px-2 py-1 text-xs font-semibold bg-blue-100 text-blue-800 rounded">GET</span>
+                                            <code class="ml-3 text-sm text-gray-700">/api/profile/</code>
+                                        </div>
+                                        <p class="mt-2 text-sm text-gray-600">Get user profile information</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Codes -->
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900">Codes</h3>
+                                <div class="mt-4 space-y-4">
+                                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                                        <div class="flex items-center">
+                                            <span class="px-2 py-1 text-xs font-semibold bg-blue-100 text-blue-800 rounded">GET</span>
+                                            <span class="px-2 py-1 ml-2 text-xs font-semibold bg-green-100 text-green-800 rounded">POST</span>
+                                            <code class="ml-3 text-sm text-gray-700">/api/codes/</code>
+                                        </div>
+                                        <p class="mt-2 text-sm text-gray-600">List and create redeem codes</p>
+                                        <div class="mt-2">
+                                            <p class="text-sm font-medium text-gray-700">Additional Endpoints:</p>
+                                            <ul class="mt-1 list-disc list-inside text-sm text-gray-600">
+                                                <li><code class="text-sm text-gray-700">/api/codes/<id>/</code> - Get, update or delete specific code</li>
+                                                <li><code class="text-sm text-gray-700">/api/codes/?is_active=true</code> - List active codes</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Transactions -->
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900">Transactions</h3>
+                                <div class="mt-4 space-y-4">
+                                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                                        <div class="flex items-center">
+                                            <span class="px-2 py-1 text-xs font-semibold bg-blue-100 text-blue-800 rounded">GET</span>
+                                            <span class="px-2 py-1 ml-2 text-xs font-semibold bg-green-100 text-green-800 rounded">POST</span>
+                                            <code class="ml-3 text-sm text-gray-700">/api/transactions/</code>
+                                        </div>
+                                        <p class="mt-2 text-sm text-gray-600">List and create transactions</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 text-center">
+            <p class="text-sm text-gray-500">
+                For raw JSON format, send request with <code class="bg-gray-100 px-2 py-1 rounded">Accept: application/json</code> header
+            </p>
+        </div>
+    </div>
+</body>
+</html>
