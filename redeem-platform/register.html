@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - CodeMarket</title>
+    <!-- Tailwind CSS -->
+    <link href="dist/output.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="text-2xl font-bold text-indigo-600">CodeMarket</a>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <a href="login.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium">Already have an account? Sign in</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Registration Form -->
+    <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8">
+            <div>
+                <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                    Create your account
+                </h2>
+                <p class="mt-2 text-center text-sm text-gray-600">
+                    Or
+                    <a href="login.html" class="font-medium text-indigo-600 hover:text-indigo-500">
+                        sign in to your existing account
+                    </a>
+                </p>
+            </div>
+            <form class="mt-8 space-y-6" action="#" method="POST" id="registerForm">
+                <div class="rounded-md shadow-sm -space-y-px">
+                    <div>
+                        <label for="username" class="sr-only">Username</label>
+                        <input id="username" name="username" type="text" required 
+                            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+                            placeholder="Username">
+                    </div>
+                    <div>
+                        <label for="email-address" class="sr-only">Email address</label>
+                        <input id="email-address" name="email" type="email" autocomplete="email" required 
+                            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+                            placeholder="Email address">
+                    </div>
+                    <div>
+                        <label for="password" class="sr-only">Password</label>
+                        <input id="password" name="password" type="password" required 
+                            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+                            placeholder="Password">
+                    </div>
+                    <div>
+                        <label for="confirm-password" class="sr-only">Confirm Password</label>
+                        <input id="confirm-password" name="confirm-password" type="password" required 
+                            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+                            placeholder="Confirm Password">
+                    </div>
+                </div>
+
+                <div class="flex items-center">
+                    <input id="terms" name="terms" type="checkbox" required 
+                        class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                    <label for="terms" class="ml-2 block text-sm text-gray-900">
+                        I agree to the 
+                        <a href="#" class="text-indigo-600 hover:text-indigo-500">Terms of Service</a>
+                        and
+                        <a href="#" class="text-indigo-600 hover:text-indigo-500">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <div>
+                    <button type="submit" 
+                        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                            <i class="fas fa-user-plus text-indigo-500 group-hover:text-indigo-400"></i>
+                        </span>
+                        Create Account
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-auto">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+            <div class="mt-8 md:mt-0 md:order-1">
+                <p class="text-center text-base text-gray-400">
+                    &copy; 2024 CodeMarket. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for API integration -->
+    <script type="module">
+        import { API_URLS } from './js/config.js';
+        document.getElementById('registerForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email-address').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const terms = document.getElementById('terms').checked;
+            
+            // Basic validation
+            if (!username || !email || !password || !confirmPassword) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            if (!terms) {
+                alert('Please accept the Terms of Service and Privacy Policy');
+                return;
+            }
+            
+            try {
+                const response = await fetch(API_URLS.register, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username,
+                        email,
+                        password,
+                        confirm_password: confirmPassword
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Registration successful! Please login to continue.');
+                    window.location.href = 'login.html';
+                } else {
+                    alert(data.error || 'Registration failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred during registration. Please try again.');
+            }
+        });
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+    </script>
+</body>
+</html>
