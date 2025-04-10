@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Redeem Codes - CodeMarket</title>
+    <!-- Tailwind CSS -->
+    <link href="dist/output.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="text-2xl font-bold text-indigo-600">CodeMarket</a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="dashboard.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Dashboard</a>
+                        <a href="buy.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Buy</a>
+                        <a href="sell.html" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Sell</a>
+                        <a href="about.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About</a>
+                        <a href="contact.html" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <button type="button" class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
+                        <i class="fas fa-bell text-xl"></i>
+                    </button>
+                    <div class="ml-3 relative">
+                        <div>
+                            <button type="button" class="flex text-sm rounded-full focus:outline-none" id="user-menu-button">
+                                <i class="fas fa-user-circle text-2xl text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <!-- Page Header -->
+        <div class="md:flex md:items-center md:justify-between">
+            <div class="flex-1 min-w-0">
+                <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                    List Your Redeem Code
+                </h2>
+                <p class="mt-1 text-sm text-gray-500">
+                    Fill in the details below to list your redeem code for sale
+                </p>
+            </div>
+        </div>
+
+        <!-- Sell Form -->
+        <div class="mt-8">
+            <div class="bg-white shadow sm:rounded-lg">
+                <div class="px-4 py-5 sm:p-6">
+                    <form id="sellForm" class="space-y-6">
+                        <!-- Platform Selection -->
+                        <div>
+                            <label for="platform" class="block text-sm font-medium text-gray-700">
+                                Payment Platform
+                            </label>
+                            <select id="platform" name="platform" required
+                                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                <option value="">Select a platform</option>
+                                <option value="paytm">Paytm</option>
+                                <option value="phonepe">PhonePe</option>
+                                <option value="googlepay">Google Pay</option>
+                                <option value="amazonpay">Amazon Pay</option>
+                            </select>
+                        </div>
+
+                        <!-- Code Type -->
+                        <div>
+                            <label for="codeType" class="block text-sm font-medium text-gray-700">
+                                Code Type
+                            </label>
+                            <select id="codeType" name="codeType" required
+                                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                <option value="">Select code type</option>
+                                <option value="cashback">Cashback</option>
+                                <option value="discount">Discount</option>
+                                <option value="reward">Reward Points</option>
+                                <option value="voucher">Gift Voucher</option>
+                            </select>
+                        </div>
+
+                        <!-- Code Value -->
+                        <div>
+                            <label for="codeValue" class="block text-sm font-medium text-gray-700">
+                                Code Value (₹)
+                            </label>
+                            <div class="mt-1 relative rounded-md shadow-sm">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 sm:text-sm">₹</span>
+                                </div>
+                                <input type="number" name="codeValue" id="codeValue" required
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
+                                    placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <!-- Selling Price -->
+                        <div>
+                            <label for="sellingPrice" class="block text-sm font-medium text-gray-700">
+                                Selling Price (₹)
+                            </label>
+                            <div class="mt-1 relative rounded-md shadow-sm">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 sm:text-sm">₹</span>
+                                </div>
+                                <input type="number" name="sellingPrice" id="sellingPrice" required
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
+                                    placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <!-- Redeem Code -->
+                        <div>
+                            <label for="redeemCode" class="block text-sm font-medium text-gray-700">
+                                Redeem Code
+                            </label>
+                            <div class="mt-1">
+                                <input type="text" name="redeemCode" id="redeemCode" required
+                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                    placeholder="Enter your redeem code">
+                            </div>
+                            <p class="mt-2 text-sm text-gray-500">
+                                Make sure to enter the code correctly. This will be revealed to the buyer after purchase.
+                            </p>
+                        </div>
+
+                        <!-- Expiry Date -->
+                        <div>
+                            <label for="expiryDate" class="block text-sm font-medium text-gray-700">
+                                Expiry Date
+                            </label>
+                            <div class="mt-1">
+                                <input type="date" name="expiryDate" id="expiryDate" required
+                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div>
+                            <label for="description" class="block text-sm font-medium text-gray-700">
+                                Description
+                            </label>
+                            <div class="mt-1">
+                                <textarea id="description" name="description" rows="3" required
+                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                                    placeholder="Add any additional details about the code"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Terms Checkbox -->
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="terms" name="terms" type="checkbox" required
+                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="terms" class="font-medium text-gray-700">
+                                    I agree to the terms and conditions
+                                </label>
+                                <p class="text-gray-500">
+                                    I confirm that this code is valid and hasn't been used.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="flex justify-end">
+                            <button type="submit"
+                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                List for Sale
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white mt-12">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+            <div class="mt-8 md:mt-0 md:order-1">
+                <p class="text-center text-base text-gray-400">
+                    &copy; 2024 CodeMarket. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for form validation and submission -->
+    <script>
+        document.getElementById('sellForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const platform = document.getElementById('platform').value;
+            const codeType = document.getElementById('codeType').value;
+            const codeValue = document.getElementById('codeValue').value;
+            const sellingPrice = document.getElementById('sellingPrice').value;
+            const redeemCode = document.getElementById('redeemCode').value;
+            const expiryDate = document.getElementById('expiryDate').value;
+            const description = document.getElementById('description').value;
+            const terms = document.getElementById('terms').checked;
+            
+            // Basic validation
+            if (!platform || !codeType || !codeValue || !sellingPrice || !redeemCode || !expiryDate || !description) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            if (!terms) {
+                alert('Please accept the terms and conditions');
+                return;
+            }
+            
+            if (parseFloat(sellingPrice) > parseFloat(codeValue)) {
+                alert('Selling price cannot be higher than code value');
+                return;
+            }
+            
+            // Validate expiry date
+            const today = new Date();
+            const expiry = new Date(expiryDate);
+            if (expiry < today) {
+                alert('Expiry date cannot be in the past');
+                return;
+            }
+            
+            // Simulate form submission
+            console.log('Submitting listing...', {
+                platform,
+                codeType,
+                codeValue,
+                sellingPrice,
+                expiryDate,
+                description
+            });
+            
+            // Redirect to dashboard after successful submission
+            window.location.href = 'dashboard.html';
+        });
+
+        // Auto-calculate suggested selling price (90% of code value)
+        document.getElementById('codeValue').addEventListener('input', function(e) {
+            const value = parseFloat(e.target.value) || 0;
+            const suggestedPrice = Math.round(value * 0.9);
+            document.getElementById('sellingPrice').value = suggestedPrice;
+        });
+    </script>
+</body>
+</html>
