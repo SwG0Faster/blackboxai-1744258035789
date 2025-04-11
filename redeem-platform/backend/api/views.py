@@ -39,6 +39,22 @@ class RedeemCodeViewSet(viewsets.ModelViewSet):
 
         return queryset
 
+    @action(detail=False, methods=['get'])
+    def transaction_history(self, request):
+        """Retrieve transaction history for the authenticated user"""
+        transactions = Transaction.objects.filter(Q(buyer=request.user) | Q(seller=request.user))
+        return Response(TransactionSerializer(transactions, many=True).data)
+
+    @action(detail=False, methods=['put'])
+    def update_profile(self, request):
+        """Update user profile information"""
+        profile = UserProfile.objects.get(user=request.user)
+        serializer = UserProfileSerializer(profile, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     @action(detail=True, methods=['post'])
     def buy(self, request, pk=None):
         code = self.get_object()
@@ -47,6 +63,12 @@ class RedeemCodeViewSet(viewsets.ModelViewSet):
                 {"error": "Code is not available for purchase"},
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+        # Create activity log
+        ActivityLog.objects.create(
+            user=request.user,
+            action=f"Purchased code: {code.code} for ₹{code.selling_price}"
+        )
 
         # Create transaction
         transaction = Transaction.objects.create(
