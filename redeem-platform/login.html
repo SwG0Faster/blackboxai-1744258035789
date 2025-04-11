@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - CodeMarket</title>
     <!-- Tailwind CSS -->
-    <link href="dist/output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
@@ -127,13 +127,13 @@
                     body: JSON.stringify({
                         username: username,
                         password: password
-                    }),
-                    credentials: 'include'
+                    })
                 });
 
                 const data = await response.json();
 
                 if (response.ok) {
+                    localStorage.setItem('token', data.token);
                     localStorage.setItem('user', JSON.stringify(data.user));
                     window.location.href = 'dashboard.html';
                 } else {
