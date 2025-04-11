@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - CodeMarket</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <a href="index.html" class="text-2xl font-bold text-indigo-600">CodeMarket</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Payment Section -->
+    <div class="max-w-3xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+            <!-- Order Summary -->
+            <div class="px-4 py-5 sm:px-6">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Order Summary</h3>
+                <div class="mt-4 border-t border-gray-200 pt-4">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-500">Code Value</span>
+                        <span class="font-medium text-gray-900">₹<span id="codeValue">500</span></span>
+                    </div>
+                    <div class="flex justify-between text-sm mt-2">
+                        <span class="text-gray-500">Platform</span>
+                        <span class="font-medium text-gray-900" id="platform">Paytm</span>
+                    </div>
+                    <div class="flex justify-between text-sm mt-2">
+                        <span class="text-gray-500">Code Type</span>
+                        <span class="font-medium text-gray-900" id="codeType">Cashback</span>
+                    </div>
+                    <div class="flex justify-between text-sm mt-2 pt-4 border-t">
+                        <span class="text-gray-900 font-semibold">Total Amount</span>
+                        <span class="font-semibold text-indigo-600">₹<span id="totalAmount">450</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Method Selection -->
+            <div class="px-4 py-5 sm:px-6 border-t border-gray-200">
+                <h4 class="text-lg font-medium text-gray-900 mb-4">Payment Method</h4>
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <input id="upi" name="payment-method" type="radio" checked class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+                        <label for="upi" class="ml-3 block text-sm font-medium text-gray-700">UPI</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="card" name="payment-method" type="radio" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+                        <label for="card" class="ml-3 block text-sm font-medium text-gray-700">Credit/Debit Card</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="netbanking" name="payment-method" type="radio" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+                        <label for="netbanking" class="ml-3 block text-sm font-medium text-gray-700">Net Banking</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Details -->
+            <div class="px-4 py-5 sm:px-6 border-t border-gray-200" id="paymentDetails">
+                <!-- UPI Section -->
+                <div id="upiSection" class="space-y-4">
+                    <div>
+                        <label for="upiId" class="block text-sm font-medium text-gray-700">UPI ID</label>
+                        <div class="mt-1">
+                            <input type="text" name="upiId" id="upiId" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="username@upi">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Section (Hidden by default) -->
+                <div id="cardSection" class="space-y-4 hidden">
+                    <div>
+                        <label for="cardNumber" class="block text-sm font-medium text-gray-700">Card Number</label>
+                        <div class="mt-1">
+                            <input type="text" name="cardNumber" id="cardNumber" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="1234 5678 9012 3456">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="expiryDate" class="block text-sm font-medium text-gray-700">Expiry Date</label>
+                            <div class="mt-1">
+                                <input type="text" name="expiryDate" id="expiryDate" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="MM/YY">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="cvv" class="block text-sm font-medium text-gray-700">CVV</label>
+                            <div class="mt-1">
+                                <input type="password" name="cvv" id="cvv" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="123">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Net Banking Section (Hidden by default) -->
+                <div id="netbankingSection" class="space-y-4 hidden">
+                    <div>
+                        <label for="bank" class="block text-sm font-medium text-gray-700">Select Bank</label>
+                        <select id="bank" name="bank" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                            <option>State Bank of India</option>
+                            <option>HDFC Bank</option>
+                            <option>ICICI Bank</option>
+                            <option>Axis Bank</option>
+                            <option>Kotak Mahindra Bank</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Button -->
+            <div class="px-4 py-5 sm:px-6 border-t border-gray-200">
+                <button type="button" id="payButton" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Pay ₹<span id="payAmount">450</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Processing Modal -->
+    <div id="processingModal" class="hidden fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
+                <div>
+                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100">
+                        <i class="fas fa-spinner fa-spin text-indigo-600"></i>
+                    </div>
+                    <div class="mt-3 text-center sm:mt-5">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                            Processing Payment
+                        </h3>
+                        <div class="mt-2">
+                            <p class="text-sm text-gray-500">
+                                Please wait while we process your payment. Do not close this window.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="hidden fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
+                <div>
+                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+                        <i class="fas fa-check text-green-600"></i>
+                    </div>
+                    <div class="mt-3 text-center sm:mt-5">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                            Payment Successful
+                        </h3>
+                        <div class="mt-2">
+                            <p class="text-sm text-gray-500">
+                                Your payment has been processed successfully. You will be redirected to view your code.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 sm:mt-6">
+                    <button type="button" onclick="window.location.href='dashboard.html'" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
+                        Go to Dashboard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { API_URLS } from './js/config.js';
+
+        // Payment method selection
+        const paymentMethods = {
+            upi: document.getElementById('upi'),
+            card: document.getElementById('card'),
+            netbanking: document.getElementById('netbanking')
+        };
+
+        const sections = {
+            upiSection: document.getElementById('upiSection'),
+            cardSection: document.getElementById('cardSection'),
+            netbankingSection: document.getElementById('netbankingSection')
+        };
+
+        function showSection(sectionId) {
+            Object.values(sections).forEach(section => section.classList.add('hidden'));
+            sections[sectionId].classList.remove('hidden');
+        }
+
+        Object.entries(paymentMethods).forEach(([method, radio]) => {
+            radio.addEventListener('change', () => showSection(method + 'Section'));
+        });
+
+        // Get payment details based on selected method
+        function getPaymentDetails() {
+            const selectedMethod = Object.entries(paymentMethods)
+                .find(([_, radio]) => radio.checked)[0];
+            
+            switch(selectedMethod) {
+                case 'upi':
+                    return {
+                        upiId: document.getElementById('upiId').value
+                    };
+                case 'card':
+                    return {
+                        cardNumber: document.getElementById('cardNumber').value,
+                        expiryDate: document.getElementById('expiryDate').value,
+                        cvv: document.getElementById('cvv').value
+                    };
+                case 'netbanking':
+                    return {
+                        bank: document.getElementById('bank').value
+                    };
+            }
+        }
+
+        // Payment processing
+        document.getElementById('payButton').addEventListener('click', async () => {
+            const processingModal = document.getElementById('processingModal');
+            const successModal = document.getElementById('successModal');
+            
+            // Get payment details
+            const paymentDetails = getPaymentDetails();
+            const selectedMethod = Object.entries(paymentMethods)
+                .find(([_, radio]) => radio.checked)[0];
+
+            // Show processing modal
+            processingModal.classList.remove('hidden');
+            
+            try {
+                // Get code ID from URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const codeId = urlParams.get('codeId');
+
+                // Process payment
+                const response = await fetch(API_URLS.processPayment, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({
+                        redeem_code_id: codeId,
+                        payment_method: selectedMethod,
+                        payment_details: paymentDetails
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Payment failed');
+                }
+
+                const result = await response.json();
+
+                // Poll payment status
+                const checkStatus = async () => {
+                    const statusResponse = await fetch(API_URLS.paymentStatus(result.id), {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    });
+                    const statusResult = await statusResponse.json();
+                    return statusResult.status === 'COMPLETED';
+                };
+
+                // Wait for payment completion
+                const isComplete = await checkStatus();
+                if (isComplete) {
+                    processingModal.classList.add('hidden');
+                    successModal.classList.remove('hidden');
+                } else {
+                    throw new Error('Payment processing failed');
+                }
+            } catch (error) {
+                console.error('Payment error:', error);
+                processingModal.classList.add('hidden');
+                alert('Payment failed. Please try again.');
+            }
+        });
+
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const amount = urlParams.get('amount');
+        const platform = urlParams.get('platform');
+        const codeType = urlParams.get('codeType');
+        const codeValue = urlParams.get('codeValue');
+
+        // Update page with URL parameters
+        if (amount) {
+            document.getElementById('totalAmount').textContent = amount;
+            document.getElementById('payAmount').textContent = amount;
+        }
+        if (platform) document.getElementById('platform').textContent = platform;
+        if (codeType) document.getElementById('codeType').textContent = codeType;
+        if (codeValue) document.getElementById('codeValue').textContent = codeValue;
+
+        // Validate form inputs
+        document.getElementById('upiId').addEventListener('input', function(e) {
+            const upiPattern = /^[\w\.\-]+@[\w\-]+$/;
+            if (!upiPattern.test(e.target.value)) {
+                e.target.classList.add('border-red-500');
+            } else {
+                e.target.classList.remove('border-red-500');
+            }
+        });
+
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').replace(/(\d{4})/g, '$1 ').trim();
+            if (e.target.value.length !== 19) {
+                e.target.classList.add('border-red-500');
+            } else {
+                e.target.classList.remove('border-red-500');
+            }
+        });
+
+        document.getElementById('expiryDate').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.slice(0,2) + '/' + value.slice(2);
+            }
+            e.target.value = value;
+            
+            const [month, year] = value.split('/');
+            const isValid = month && year && month <= 12 && month > 0;
+            
+            if (!isValid) {
+                e.target.classList.add('border-red-500');
+            } else {
+                e.target.classList.remove('border-red-500');
+            }
+        });
+
+        document.getElementById('cvv').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 3);
+            if (e.target.value.length !== 3) {
+                e.target.classList.add('border-red-500');
+            } else {
+                e.target.classList.remove('border-red-500');
+            }
+        });
+    </script>
+</body>
+</html>
