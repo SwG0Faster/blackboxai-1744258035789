@@ -17,5 +17,7 @@ export const API_URLS = {
     logout: `${API_BASE_URL}/api/auth/logout/`,
     profile: `${API_BASE_URL}/api/profile/`,
     codes: `${API_BASE_URL}/api/codes/`,
-    transactions: `${API_BASE_URL}/api/transactions/`
+    transactions: `${API_BASE_URL}/api/transactions/`,
+    processPayment: `${API_BASE_URL}/api/payment/process/`,
+    paymentStatus: (transactionId) => `${API_BASE_URL}/api/payment/status/${transactionId}/`
 };
