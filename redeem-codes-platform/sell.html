@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Codes - RedeemHub</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-indigo-600">
+                        <i class="fas fa-ticket-alt mr-2"></i>
+                        RedeemHub
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="dashboard.html" class="text-gray-600 hover:text-indigo-600 transition">Dashboard</a>
+                    <a href="#" class="text-gray-600 hover:text-indigo-600 transition">
+                        <i class="fas fa-bell"></i>
+                        <span class="ml-1 bg-red-500 text-white text-xs px-2 py-1 rounded-full">2</span>
+                    </a>
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe" alt="Profile" class="w-8 h-8 rounded-full">
+                            <span class="text-gray-700">John Doe</span>
+                            <i class="fas fa-chevron-down text-gray-500"></i>
+                        </button>
+                        <div class="absolute right-0 w-48 mt-2 py-2 bg-white rounded-lg shadow-xl hidden group-hover:block">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">
+                                <i class="fas fa-user mr-2"></i> Profile
+                            </a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">
+                                <i class="fas fa-cog mr-2"></i> Settings
+                            </a>
+                            <hr class="my-2">
+                            <a href="login.html" class="block px-4 py-2 text-red-600 hover:bg-gray-100">
+                                <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-16 min-h-screen">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">Sell Your Redeem Code</h1>
+                <p class="text-gray-600 mt-2">List your unused redeem codes and turn them into cash</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Listing Form -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <form id="sellForm" onsubmit="return handleSubmit(event)" class="space-y-6">
+                        <!-- Platform Selection -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Platform
+                            </label>
+                            <select id="platform" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent">
+                                <option value="">Select Platform</option>
+                                <option value="paytm">PayTM</option>
+                                <option value="phonepe">PhonePe</option>
+                                <option value="googlepay">Google Pay</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Code Type -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Code Type
+                            </label>
+                            <select id="codeType" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent">
+                                <option value="">Select Type</option>
+                                <option value="cashback">Cashback</option>
+                                <option value="discount">Discount</option>
+                                <option value="reward">Reward Points</option>
+                                <option value="voucher">Gift Voucher</option>
+                            </select>
+                        </div>
+
+                        <!-- Code Value -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Code Value
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">$</span>
+                                <input type="number" id="codeValue" required min="1" step="0.01"
+                                    class="w-full pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                                    placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <!-- Redeem Code -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Redeem Code
+                            </label>
+                            <input type="text" id="redeemCode" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                                placeholder="Enter your redeem code">
+                            <p class="mt-1 text-sm text-gray-500">This will be hidden until purchase</p>
+                        </div>
+
+                        <!-- Expiry Date -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Expiry Date
+                            </label>
+                            <input type="date" id="expiryDate" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent">
+                        </div>
+
+                        <!-- Description -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Description
+                            </label>
+                            <textarea id="description" rows="3" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                                placeholder="Describe your redeem code and any terms..."></textarea>
+                        </div>
+
+                        <!-- Selling Price -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Your Selling Price
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">$</span>
+                                <input type="number" id="sellingPrice" required min="1" step="0.01"
+                                    class="w-full pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                                    placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <!-- Terms Checkbox -->
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input type="checkbox" id="terms" required
+                                    class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="terms" class="font-medium text-gray-700">
+                                    I agree to the <a href="#" class="text-indigo-600 hover:text-indigo-500">Terms and Conditions</a>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit"
+                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white gradient-bg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            List Code for Sale
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Preview Section -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <h2 class="text-lg font-semibold text-gray-900 mb-4">Preview Your Listing</h2>
+                        <div id="previewCard" class="border border-gray-200 rounded-lg p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <img src="https://via.placeholder.com/40" alt="Platform" class="w-10 h-10 rounded-lg" id="previewPlatformImg">
+                                    <div class="ml-3">
+                                        <h3 class="font-semibold text-gray-900" id="previewTitle">Platform Reward</h3>
+                                        <p class="text-sm text-gray-500" id="previewValue">$0 Value</p>
+                                    </div>
+                                </div>
+                                <span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">Pending Verification</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-500">Validity</span>
+                                    <span class="text-gray-900" id="previewValidity">Not set</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-500">Type</span>
+                                    <span class="text-gray-900" id="previewType">Not selected</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-500">Your Price</span>
+                                    <span class="text-xl font-bold text-indigo-600" id="previewPrice">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Selling Tips -->
+                    <div class="bg-white rounded-xl shadow-sm p-6">
+                        <h2 class="text-lg font-semibold text-gray-900 mb-4">Selling Tips</h2>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                Set a competitive price to sell faster
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                Provide clear and accurate description
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                Double-check the expiry date
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                Verify the code is valid before listing
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update preview as user fills the form
+        document.getElementById('sellForm').addEventListener('input', updatePreview);
+
+        function updatePreview() {
+            const platform = document.getElementById('platform').value;
+            const codeType = document.getElementById('codeType').value;
+            const codeValue = document.getElementById('codeValue').value;
+            const expiryDate = document.getElementById('expiryDate').value;
+            const sellingPrice = document.getElementById('sellingPrice').value;
+
+            // Update preview card
+            document.getElementById('previewTitle').textContent = 
+                platform ? platform.charAt(0).toUpperCase() + platform.slice(1) + ' ' + (codeType || 'Reward') : 'Platform Reward';
+            document.getElementById('previewValue').textContent = 
+                codeValue ? `$${codeValue} Value` : '$0 Value';
+            document.getElementById('previewValidity').textContent = 
+                expiryDate ? new Date(expiryDate).toLocaleDateString() : 'Not set';
+            document.getElementById('previewType').textContent = 
+                codeType ? codeType.charAt(0).toUpperCase() + codeType.slice(1) : 'Not selected';
+            document.getElementById('previewPrice').textContent = 
+                sellingPrice ? `$${sellingPrice}` : '$0.00';
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            // Here you would typically submit to your backend
+            alert('Your code has been listed for sale!');
+            return false;
+        }
+    </script>
+</body>
+</html>
